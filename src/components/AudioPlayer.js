@@ -4,19 +4,18 @@ import "./AudioPlayer.css";
 import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 
 const AudioPlayer = () => {
-    const allTracks = [
-        { title: "Song of Dawn", file: "/audio/Song_of_Dawn.mp3", tags: ["Song", "Scoring"] },
-        { title: "One Day", file: "/audio/One Day.mp3", tags: ["Song"] },
-        { title: "Red Alma Theme", file: "/audio/Red Alma Theme.mp3", tags: ["Theme", "Orchestral"] },
-        { title: "March of the Grey Order", file: "/audio/March of the Grey Order.mp3", tags: ["Theme", "Orchestral"] },
-        { title: "Scavengers Main Theme", file: "/audio/Scavengers Main Theme.mp3", tags: ["Theme"] },
-        { title: "Adrielle The Unusual Fairy", file: "/audio/Adrielle The Unusual Fairy.mp3", tags: ["Theme", "Orchestral"] },
-        { title: "Melody of the Deep", file: "/audio/Melody of the Deep.mp3", tags: ["Scoring"] },
-        { title: "The Scarlet Mountains", file: "/audio/The Scarlet Mountains.mp3", tags: ["Orchestral", "Scoring"] },
-        { title: "E-Motions", file: "/audio/E-Motions.mp3", tags: ["Song"] },
-        { title: "The Seeds of Darkness", file: "/audio/The Seeds of Darkness.mp3", tags: ["Scoring"] } 
-      ];
-      
+  const allTracks = [
+    { title: "Song of Dawn", file: "/audio/Song_of_Dawn.mp3", tags: ["Song", "Scoring"] },
+    { title: "One Day", file: "/audio/One Day.mp3", tags: ["Song"] },
+    { title: "Red Alma Theme", file: "/audio/Red Alma Theme.mp3", tags: ["Theme", "Orchestral"] },
+    { title: "March of the Grey Order", file: "/audio/March of the Grey Order.mp3", tags: ["Theme", "Orchestral"] },
+    { title: "Scavengers Main Theme", file: "/audio/Scavengers Main Theme.mp3", tags: ["Theme"] },
+    { title: "Adrielle The Unusual Fairy", file: "/audio/Adrielle The Unusual Fairy.mp3", tags: ["Theme", "Orchestral"] },
+    { title: "Melody of the Deep", file: "/audio/Melody of the Deep.mp3", tags: ["Scoring"] },
+    { title: "The Scarlet Mountains", file: "/audio/The Scarlet Mountains.mp3", tags: ["Orchestral", "Scoring"] },
+    { title: "E-Motions", file: "/audio/E-Motions.mp3", tags: ["Song"] },
+    { title: "The Seeds of Darkness", file: "/audio/The Seeds of Darkness.mp3", tags: ["Scoring"] }
+  ];
 
   const tags = ["All", "Orchestral", "Theme", "Song", "Scoring"];
   const [selectedTag, setSelectedTag] = useState("All");
@@ -24,8 +23,8 @@ const AudioPlayer = () => {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
-  // 🎯 Filtre les pistes selon le tag sélectionné
   const filteredTracks = selectedTag === "All"
     ? allTracks
     : allTracks.filter(track => track.tags.includes(selectedTag));
@@ -40,7 +39,7 @@ const AudioPlayer = () => {
       cursorColor: "transparent",
       height: 80,
       normalize: true,
-      backend: "WebAudio",
+      backend: "MediaElement",
     });
 
     return () => {
@@ -50,34 +49,59 @@ const AudioPlayer = () => {
     };
   }, []);
 
-  const togglePlay = (track) => {
-    if (!wavesurfer.current) return;
+  useEffect(() => {
+    const unlockAudio = () => {
+      const silentAudio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
+      silentAudio.volume = 0;
+      silentAudio.play().then(() => {
+        silentAudio.pause();
+        silentAudio.remove();
+      }).catch(console.error);
 
-    if (currentTrack?.title === track.title) {
-      if (isPlaying) {
-        wavesurfer.current.pause();
+      if (wavesurfer.current?.backend?.ac) {
+        const audioCtx = wavesurfer.current.backend.ac;
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+      }
+      setHasInteracted(true);
+      document.removeEventListener("click", unlockAudio);
+    };
+
+    document.addEventListener("click", unlockAudio);
+    return () => document.removeEventListener("click", unlockAudio);
+  }, []);
+
+  const togglePlay = async (track) => {
+    try {
+      if (!hasInteracted) {
+        const silentAudio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
+        silentAudio.volume = 0;
+        await silentAudio.play().catch(console.error);
+        silentAudio.pause();
+        silentAudio.remove();
+        setHasInteracted(true);
+      }
+
+      if (currentTrack?.title === track.title) {
+        wavesurfer.current.playPause();
       } else {
-        wavesurfer.current.play();
+        setCurrentTrack(track);
+        await wavesurfer.current.load(track.file);
+        
+        wavesurfer.current.once('ready', async () => {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          await wavesurfer.current.play().catch(console.error);
+        });
       }
-      setIsPlaying(!isPlaying);
-    } else {
-      if (wavesurfer.current.isPlaying()) {
-        wavesurfer.current.stop();
-      }
-
-      setCurrentTrack(track);
-      wavesurfer.current.load(track.file);
-
-      wavesurfer.current.on("ready", () => {
-        wavesurfer.current.play();
-        setIsPlaying(true);
-      });
+      setIsPlaying(wavesurfer.current.isPlaying());
+    } catch (err) {
+      console.error("Erreur de lecture :", err);
     }
   };
 
   return (
     <div className="audio-container">
-      {/* ✅ Boutons de filtres */}
       <div className="filter-buttons">
         {tags.map(tag => (
           <button 
@@ -90,10 +114,8 @@ const AudioPlayer = () => {
         ))}
       </div>
 
-      {/* ✅ Waveform */}
       <div className="waveform-container" ref={waveformRef}></div>
 
-      {/* ✅ Liste des titres */}
       <ul className="track-list">
         {filteredTracks.map((track, index) => (
           <li
