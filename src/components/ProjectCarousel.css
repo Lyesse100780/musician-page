@@ -1,0 +1,54 @@
+.video-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px; /* ✅ Ajoute un espace au-dessus */
+  margin-bottom: 10px; /* ✅ Espace entre le titre et la vidéo */
+  color: #fff;
+}
+
+.video-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto; /* ✅ Ajoute un espace au-dessus et en dessous */
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 400px; /* ✅ Ajuste la hauteur de la vidéo */
+  border-radius: 10px; /* ✅ Ajoute un effet arrondi pour un design moderne */
+}
+.carousel-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 30px !important; /* ✅ Ajoute un petit espace au-dessus du carousel */
+}
+
+.swiper {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px; /* Carré parfait */
+  height: 150px;
+}
+
+.carousel-image {
+  width: 100px; /* Taille fixe */
+  height: 100px; /* Carré parfait */
+  object-fit: cover; /* Remplit sans déformation */
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-image:hover {
+  transform: scale(1.05);
+}
