@@ -23,7 +23,7 @@
   max-width: 1200px;
   margin: auto;
   padding: 20px;
-  margin-top: 30px !important; /* ✅ Ajoute un petit espace au-dessus du carousel */
+  margin-top: 30px !important;
 }
 
 .swiper {
@@ -36,14 +36,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px; /* Carré parfait */
+  width: 150px; 
   height: 150px;
 }
 
 .carousel-image {
-  width: 100px; /* Taille fixe */
-  height: 100px; /* Carré parfait */
-  object-fit: cover; /* Remplit sans déformation */
+  width: 100px; 
+  height: 100px;
+  object-fit: cover;
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
