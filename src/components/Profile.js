@@ -1,11 +1,18 @@
-import React from 'react';
-import { AiOutlineYoutube, AiOutlineInstagram } from 'react-icons/ai';
-import { MdOutlineEmail } from 'react-icons/md';
+import React, { useState } from 'react';
+import { MdOutlineEmail, MdMusicNote, MdBusiness } from 'react-icons/md';
 import './Profile.css';
 
 const Profile = () => {
-  const handleEmailClick = () => {
-    window.location.href = 'mailto:lyesse.hamadou@gmail.com';
+  const [showPopup, setShowPopup] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState('');
+
+  const handleCopy = (email) => {
+    navigator.clipboard.writeText(email);
+    setCopiedEmail(email);
+    setTimeout(() => {
+      setCopiedEmail('');
+      setShowPopup(false); // Ferme la popup après le délai
+    }, 2000);
   };
 
   return (
@@ -23,13 +30,30 @@ const Profile = () => {
       
       <div className="profile-info">
         <p>I'm a composer based in Paris, specializing in original scores for video games, films and television. I'm also a songwriter across different genres.</p>
+        <div className="social-icons">
+          <button 
+            className="email-button" 
+            onClick={() => setShowPopup(!showPopup)}
+          >
+            <MdOutlineEmail className="icon" />
+          </button>
+        </div>
       </div>
 
-      <div className="social-icons">
-        <button onClick={handleEmailClick} className="email-button" aria-label="Send email">
-          <MdOutlineEmail className="icon" />
-        </button> 
-      </div>
+      {showPopup && (
+        <div className="email-popup centered-popup">
+          <div className="email-info" onClick={() => handleCopy('contact@lyessemusic.com')}>
+            <MdMusicNote className="icon" />
+            <span>Artistic Inquiries: contact@lyessemusic.com</span>
+            {copiedEmail === 'contact@lyessemusic.com' && <span className="copied">Copied!</span>}
+          </div>
+          <div className="email-info" onClick={() => handleCopy('martialkool.louis@bozdaya.com')}>
+            <MdBusiness className="icon" />
+            <span>Mgmt & Business: martialkool.louis@bozdaya.com</span>
+            {copiedEmail === 'martialkool.louis@bozdaya.com' && <span className="copied">Copied!</span>}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

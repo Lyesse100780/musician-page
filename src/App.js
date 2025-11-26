@@ -4,8 +4,10 @@ import Banner from './components/Banner';
 import Profile from './components/Profile';
 import AudioPlayer from './components/AudioPlayer';
 import ProjectCarousel from './components/ProjectCarousel';
+import FeltedMemoriesPage from './components/FeltedMemoriesPage'; // 👈 AJOUT
 import './App.css';
 
+// HOME PAGE
 function Home() {
   return (
     <div className="app-container">
@@ -17,7 +19,7 @@ function Home() {
   );
 }
 
-
+// SIMPLE PROJECT PAGE (si tu veux la garder)
 function Projects() {
   return (
     <div className="projects-container">
@@ -27,11 +29,17 @@ function Projects() {
   );
 }
 
+// MAIN ROUTING
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+
+        {/* 🔥 NOUVELLE LANDING PAGE */}
+        <Route path="/felted-memories" element={<FeltedMemoriesPage />} />
+
+        {/* SI TU VEUX GARDER LA PAGE PROJECTS */}
         <Route path="/projects" element={<Projects />} />
       </Routes>
     </Router>

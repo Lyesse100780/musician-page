@@ -86,16 +86,5 @@ body, html {
   font-size: 1rem;
   color: #bbb;
 
-  @media (max-width: 768px) {
-    .app-container {
-      padding: 15px; /* Ajoute une marge sur mobile */
-    }
-  
-    .profile-text {
-      text-align: center; /* Centre le texte sur mobile */
-      font-size: 14px; /* Réduit la taille pour éviter l'effet compacté */
-      padding: 0 10px; /* Ajoute un peu d’espace sur les côtés */
-    }
-  }
   
 }

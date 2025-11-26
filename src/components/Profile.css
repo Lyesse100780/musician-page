@@ -1,296 +1,124 @@
-/* ✅ Garde la structure correcte */
+/* ✅ Conteneur principal du profil */
 .profile-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 0;
-    position: relative;
-    margin-top: -45px;
-    width: 90%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0;
+  position: relative;
+  margin-top: 50px;
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* ✅ Répare le portrait cerclé */
+/* ✅ Image du profil */
 .profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: #0d1b2a;
-    border: 5px solid #00f7ff;
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.8); /* Garde l'effet lumineux */
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #0d1b2a;
+  border: 3px solid #00f7ff;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
+  flex-shrink: 0;
+  position: absolute;
+  top: -75px; /* Positionne l'image à moitié sur la bannière */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* ✅ Ajuste l'image à l'intérieur */
 .profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.05);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* ✅ Correction du texte */
+/* ✅ Informations sur le profil */
 .profile-info {
-    text-align: left;
-    color: white;
-    line-height: 1.2;
-    max-width: 500px;
-    font-size: 1.1rem;
-    margin: 0 auto;
-    padding: 0; /* Supprime l’espace inutile */
+  text-align: center;
+  color: white;
+  line-height: 1.2;
+  max-width: 500px;
+  font-size: 1.1rem;
+  margin-top: 40px;
 }
 
-/* ✅ Évite un trop grand espacement vertical */
-.profile-info p {
-    margin: 1.6rem 0 !important;
-    color: #b0bec5;
-    font-size: 1rem;
-}
-
-.profile-info p:last-child {
-    margin-bottom: 0 !important;
-}
-
-/* ✅ Corrige les icônes sociales */
-.social-icons {
-    display: flex;
-    gap: 1rem;
-    margin-left: auto;
-    padding-right: 2rem;
-}
-
-/* ✅ Remet les icônes en turquoise */
-.icon {
-    color: #00F7FF !important; /* Assure que la couleur est appliquée */
-    font-size: 2rem;
-    transition: all 0.3s ease;
-    background: none !important;
-    border: none !important;
-    outline: none !important;
-}
-
-/* ✅ Supprime le fond blanc de l'icône mail */
+/* ✅ Icône d'email */
 .email-button {
-    background: none !important;
-    border: none !important;
-    padding: 0;
-    outline: none !important;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.email-button .icon {
-    background: none !important; /* Enlève tout fond derrière l'icône */
-    padding: 0;
-    border-radius: 0;
+.icon {
+  color: #00F7FF;
+  font-size: 2rem;
+  transition: transform 0.3s ease;
 }
 
-/* ✅ Réduction des espaces inutiles sur mobile */
+.icon:hover {
+  transform: scale(1.1);
+}
+
+/* ✅ Popup des emails */
+.email-popup {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: #0d1b2a;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* ✅ Ligne individuelle d'email */
+.email-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.email-info:hover {
+  background: rgba(0, 247, 255, 0.1);
+}
+
+.email-info span {
+  color: #b0bec5;
+}
+
+/* ✅ Indicateur de copie */
+.copied {
+  margin-left: 10px;
+  color: #00ff7f;
+  font-size: 0.9rem;
+}
+
+/* ✅ Responsive Design */
 @media (max-width: 768px) {
-    .profile-container {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
-        gap: 1rem;
-    }
-
-    .profile-info {
-        text-align: center;
-        max-width: 100%;
-        padding: 0 15px;
-    }
-
-    .social-icons {
-        gap: 0.8rem;
-        padding-right: 0;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .profile-image {
-        width: 100px;
-        height: 100px;
-        border-width: 3px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-container {
-        gap: 0.5rem;
-    }
-
-    .profile-image {
-        width: 80px;
-        height: 80px;
-        border-width: 2px;
-    }
-
-    .profile-info {
-        font-size: 1rem;
-    }
-
-    .icon {
-        font-size: 1.5rem;
-    }
-    /* ===== AUDIO PLAYER - VERSION FINALE ===== */
-.audio-player {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 1rem;
-    background: #164370;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(176, 175, 175, 0.033);
-    max-width: 800px;
-    margin: -25px auto 0.5rem auto; /* Remonte le composant */
-    position: relative;
-    flex-wrap: wrap;
-  }
-  
-  /* Conteneur bouton + contrôles */
-  .player-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    min-width: 80px;
-  }
-  
-  /* Bouton Play principal */
-  .control-button {
-    background: #4a90e2;
-    border: none;
-    border-radius: 50%;
-    padding: 0.8rem;
-    cursor: pointer;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-    margin: 0 !important;
-  }
-  
-  .control-button:hover {
-    transform: scale(1.05);
-    background: #357abd;
-  }
-  
-  /* Conteneur waveform */
-  .waveform-container {
-    flex-grow: 1;
-    min-height: 70px;
-    margin-top: -5px; /* Remonte la waveform */
-  }
-  
-  /* Liste des pistes */
-  .track-list {
-    width: 100%;
-    list-style: none;
-    padding: 0 1rem !important;
-    margin: -10px auto 0 auto !important; /* Remonte la liste */
-    max-width: 95%;
-  }
-  
-  .track-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.6rem 0 !important;
-    border-bottom: 1px solid #00f7ff33;
-    font-size: 0.95rem;
-  }
-  
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 768px) {
-    .audio-player {
-      flex-direction: row;
-      gap: 1rem;
-      margin-top: -15px !important;
-      padding: 0.8rem;
-    }
-  
-    .waveform-container {
-      min-height: 60px;
-    }
-  
-    .control-button {
-      padding: 0.7rem !important;
-    }
-  
-    .track-list {
-      margin-top: -5px !important;
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .audio-player {
+  .profile-container {
       flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-    }
-  
-    .player-controls {
-      order: -1;
-      flex-direction: row;
-      gap: 1rem;
-      width: 100%;
+      text-align: center;
+      gap: 1.5rem;
+  }
+
+  .email-popup {
+      right: 50%;
+      transform: translateX(50%);
+  }
+
+  .email-info {
       justify-content: center;
-    }
-  
-    .waveform-container {
-      width: 100%;
-      margin-top: -10px;
-    }
-  
-    .track-list li {
-      font-size: 0.9rem;
-      padding: 0.5rem 0 !important;
-    }
-  }
-  
-  /* ===== CORRECTION RESPONSIVE ===== */
-  @media (max-width: 600px) {
-    .audio-player {
-      flex-direction: row !important; /* Garde l'alignement horizontal */
-      align-items: center;
-      gap: 0.8rem;
-    }
-  
-    .player-controls {
-      flex-direction: column;
-      order: 0; /* Réinitialise l'ordre */
-      width: auto;
-      min-width: 60px;
-    }
-  
-    .waveform-container {
-      width: calc(100% - 80px); /* Réserve l'espace pour le bouton */
-      margin-top: 0;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .waveform-container {
-      width: calc(100% - 60px); /* Ajustement pour petits écrans */
-      min-height: 45px;
-    }
-  
-    .player-controls {
-      min-width: 50px;
-    }
-  
-    .hidden {
-        display: none !important;
-      }      
-    
   }
 }

@@ -16,14 +16,28 @@ const images = [
   "/images/project7.webp",
   "/images/project8.jpg",
   "/images/project9.jpg",
-  "/images/project10.webp"
+  "/images/project10.png"
+];
+
+// ✅ Tableau des liens associés à chaque image
+const imageLinks = [
+  "https://www.youtube.com/watch?v=Hm1rRqMGNQY&list=PLqFEGSY61LzhSvJzF6av27MmloRQMcbqC",
+  "https://www.youtube.com/watch?v=x87weHkIx6A",
+  "https://www.kickstarter.com/projects/1162110258/solomon-kane",
+  "https://www.kickstarter.com/projects/1162110258/hel-the-last-saga?lang=fr",
+  "https://youtu.be/Em6hIIVjpI0?si=C3hbEAr4DVVV3lxF",
+  "https://youtu.be/AKVnx-f3Ws8?si=blq47kHd0DRzGvmk",
+  "https://www.youtube.com/watch?v=iwJ1WoIlHCs",
+  "https://www.youtube.com/watch?v=ZMo6v_Vx3wI",
+  "https://www.youtube.com/watch?v=kkutyAWASzA",
+  "https://youtu.be/sx8DsRREcD4?si=Tq0iF4_-KNPXd50L"
 ];
 
 function ProjectCarousel() {
   return (
     <div className="carousel-container">
       <h2 className="video-title">Demoreel</h2>
-      
+
       {/* ✅ Conteneur de la vidéo */}
       <div className="video-container">
         <iframe
@@ -41,13 +55,13 @@ function ProjectCarousel() {
       <Swiper
         slidesPerView={3}
         spaceBetween={10}
-        centeredSlides={true} // ✅ Centre les slides pour éviter les glitchs
+        centeredSlides={true}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
           pauseOnMouseEnter: true
         }}
-        speed={1000} // ✅ Transition fluide entre les slides
+        speed={1000}
         pagination={{ clickable: true, dynamicBullets: true }}
         navigation
         modules={[Autoplay, Pagination, Navigation]}
@@ -59,12 +73,14 @@ function ProjectCarousel() {
       >
         {images.map((src, index) => (
           <SwiperSlide key={index}>
-            <img 
-              src={src} 
-              alt={`Project ${index + 1}`} 
-              className="carousel-image"
-              loading="lazy"
-            />
+            <a href={imageLinks[index]} target="_blank" rel="noopener noreferrer">
+              <img 
+                src={src} 
+                alt={`Project ${index + 1}`} 
+                className="carousel-image"
+                loading="lazy"
+              />
+            </a>
           </SwiperSlide>
         ))}
       </Swiper>
