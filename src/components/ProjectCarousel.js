@@ -1,48 +1,96 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import "./ProjectCarousel.css";
 
-const images = [
-  "/images/project1.jpg",
-  "/images/project2.webp",
-  "/images/project3.jpg",
-  "/images/project4.png",
-  "/images/project5.jpeg",
-  "/images/project6.webp",
-  "/images/project7.webp",
-  "/images/project8.jpg",
-  "/images/project9.jpg",
-  "/images/project10.png"
+const projects = [
+  {
+    img: "/images/project13.jpg",
+    title: "Dreams of the Old Ones",
+    type: "Narrative Video Game – OST",
+    link: "https://masteroflore.com/dreams-of-the-old-ones"
+  },
+   {
+    img: "/images/project12.jpg",
+    title: "Loom: Woven Worlds",
+    type: "Narrative Video Game – OST",
+    link: "https://masteroflore.com/loom-wovenworlds"
+  },
+  {
+    img: "/images/project14.jpg",
+    title: "Felted Memories",
+    type: "Album – Piano & Textures",
+    link: "https://www.lyessemusic.com/felted-memories"
+  },
+  {
+    img: "/images/project1.jpg",
+    title: "AracKhan Wars",
+    type: "Board Game – OST & Trailers",
+    link: "https://www.youtube.com/watch?v=Hm1rRqMGNQY&list=PLqFEGSY61LzhSvJzF6av27MmloRQMcbqC"
+  },
+  {
+    img: "/images/project2.webp",
+    title: "Dante Inferno",
+    type: "Board Game – Trailers",
+    link: "https://www.youtube.com/watch?v=x87weHkIx6A"
+  },
+  {
+    img: "/images/project3.jpg",
+    title: "Solomon Kane",
+    type: "Narrative OST",
+    link: "https://www.kickstarter.com/projects/1162110258/solomon-kane"
+  },
+  {
+    img: "/images/project4.png",
+    title: "HEL: The Last Saga",
+    type: "Narrative OST",
+    link: "https://www.kickstarter.com/projects/1162110258/hel-the-last-saga?lang=fr"
+  },
+  {
+    img: "/images/project5.jpeg",
+    title: "AracKhan Wars",
+    type: "Trailer – Card Game",
+    link: "https://youtu.be/Em6hIIVjpI0?si=C3hbEAr4DVVV3lxF"
+  },
+  {
+    img: "/images/project6.webp",
+    title: "Nyakuza",
+    type: "Trailer — Board Game",
+    link: "https://youtu.be/AKVnx-f3Ws8?si=blq47kHd0DRzGvmk"
+  },
+  {
+    img: "/images/project7.webp",
+    title: "Anastyr",
+    type: "Board Game – Trailer",
+    link: "https://www.youtube.com/watch?v=iwJ1WoIlHCs"
+  },
+  {
+    img: "/images/project8.jpg",
+    title: "Leslie Feat. Bobby Valentino",
+    type: "Accorde-moi",
+    link: "https://www.youtube.com/watch?v=ZMo6v_Vx3wI"
+  },
+  {
+    img: "/images/project9.jpg",
+    title: "Amel Bent",
+    type: "J'ai changé d'avis",
+    link: "https://www.youtube.com/watch?v=kkutyAWASzA"
+  },
+  {
+    img: "/images/project10.png",
+    title: "Twisted Realms",
+    type: "Trailer — Board Game",
+    link: "https://youtu.be/sx8DsRREcD4?si=Tq0iF4_-KNPXd50L"
+  },
 ];
 
-// ✅ Tableau des liens associés à chaque image
-const imageLinks = [
-  "https://www.youtube.com/watch?v=Hm1rRqMGNQY&list=PLqFEGSY61LzhSvJzF6av27MmloRQMcbqC",
-  "https://www.youtube.com/watch?v=x87weHkIx6A",
-  "https://www.kickstarter.com/projects/1162110258/solomon-kane",
-  "https://www.kickstarter.com/projects/1162110258/hel-the-last-saga?lang=fr",
-  "https://youtu.be/Em6hIIVjpI0?si=C3hbEAr4DVVV3lxF",
-  "https://youtu.be/AKVnx-f3Ws8?si=blq47kHd0DRzGvmk",
-  "https://www.youtube.com/watch?v=iwJ1WoIlHCs",
-  "https://www.youtube.com/watch?v=ZMo6v_Vx3wI",
-  "https://www.youtube.com/watch?v=kkutyAWASzA",
-  "https://youtu.be/sx8DsRREcD4?si=Tq0iF4_-KNPXd50L"
-];
-
-function ProjectCarousel() {
+export default function ProjectCarousel() {
   return (
-    <div className="carousel-container">
+    <div className="projects-section">
       <h2 className="video-title">Demoreel</h2>
 
-      {/* ✅ Conteneur de la vidéo */}
       <div className="video-container">
         <iframe
           width="100%"
-          height="400px"
+          height="400"
           src="https://www.youtube-nocookie.com/embed/wa5s3tzyYA0"
           title="Demo Reel"
           frameBorder="0"
@@ -51,41 +99,30 @@ function ProjectCarousel() {
         ></iframe>
       </div>
 
-      {/* ✅ Swiper Carousel */}
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={10}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true
-        }}
-        speed={1000}
-        pagination={{ clickable: true, dynamicBullets: true }}
-        navigation
-        modules={[Autoplay, Pagination, Navigation]}
-        breakpoints={{
-          320: { slidesPerView: 3, spaceBetween: 5 },
-          768: { slidesPerView: 5, spaceBetween: 8 },
-          1024: { slidesPerView: 7, spaceBetween: 10 }
-        }}
-      >
-        {images.map((src, index) => (
-          <SwiperSlide key={index}>
-            <a href={imageLinks[index]} target="_blank" rel="noopener noreferrer">
-              <img 
-                src={src} 
-                alt={`Project ${index + 1}`} 
-                className="carousel-image"
-                loading="lazy"
-              />
-            </a>
-          </SwiperSlide>
+      <div className="projects-header">
+        <h3>Selected works</h3>
+        <p>A selection of scores for games, trailers and albums.</p>
+      </div>
+
+      {/* ⭐ Nouvelle Grid Dynamique */}
+      <div className="dynamic-grid">
+        {projects.map((p, i) => (
+          <a
+            key={i}
+            href={p.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="grid-item"
+          >
+            <img src={p.img} alt={p.title} loading="lazy" />
+            <div className="hover-title">
+              <strong>{p.title}</strong>
+              <br />
+              <span>{p.type}</span>
+            </div>
+          </a>
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 }
-
-export default ProjectCarousel;

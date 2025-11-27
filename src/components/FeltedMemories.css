@@ -128,5 +128,22 @@
   opacity: 0.85;
   color: rgba(255, 255, 255, 0.9);
 }
+.more-work {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.more-work a {
+  color: #6EC1FF;  /* tu peux changer selon ta palette */
+  font-size: 1rem;
+  opacity: 0.85;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.more-work a:hover {
+  opacity: 1;
+}
+
 
 }

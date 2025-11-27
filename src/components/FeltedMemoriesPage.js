@@ -82,6 +82,12 @@ export default function FeltedMemoriesPage() {
             overall narrative flow intact.
           </p>
         </div>
+        <div className="more-work">
+  <a href="https://www.lyessemusic.com" target="_blank" rel="noopener noreferrer">
+    More about my work →
+  </a>
+</div>
+
       </section>
     </main>
   );
