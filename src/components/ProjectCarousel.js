@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./ProjectCarousel.css";
 
 const projects = [
@@ -8,7 +8,7 @@ const projects = [
     type: "Narrative Video Game – OST",
     link: "https://masteroflore.com/dreams-of-the-old-ones"
   },
-   {
+  {
     img: "/images/project12.jpg",
     title: "Loom: Woven Worlds",
     type: "Narrative Video Game – OST",
@@ -79,14 +79,28 @@ const projects = [
     title: "Twisted Realms",
     type: "Trailer — Board Game",
     link: "https://youtu.be/sx8DsRREcD4?si=Tq0iF4_-KNPXd50L"
-  },
+  }
 ];
 
 export default function ProjectCarousel() {
+  const [featuredIndex, setFeaturedIndex] = useState(null);
+
+  // Spotlight aléatoire qui change régulièrement
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * projects.length);
+      setFeaturedIndex(randomIndex);
+    }, 2500); // change toutes les 2.5s (tu peux ajuster)
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="projects-section">
-      <h2 className="video-title">Demoreel</h2>
-
       <div className="video-container">
         <iframe
           width="100%"
@@ -104,15 +118,16 @@ export default function ProjectCarousel() {
         <p>A selection of scores for games, trailers and albums.</p>
       </div>
 
-      {/* ⭐ Nouvelle Grid Dynamique */}
-      <div className="dynamic-grid">
+      <div className="dynamic-grid mosaic-grid">
         {projects.map((p, i) => (
-          <a
+          <button
             key={i}
-            href={p.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="grid-item"
+            type="button"
+            className={
+              "grid-item mosaic-item" +
+              (featuredIndex === i ? " featured" : "")
+            }
+            onClick={() => handleClick(p.link)}
           >
             <img src={p.img} alt={p.title} loading="lazy" />
             <div className="hover-title">
@@ -120,7 +135,7 @@ export default function ProjectCarousel() {
               <br />
               <span>{p.type}</span>
             </div>
-          </a>
+          </button>
         ))}
       </div>
     </div>
