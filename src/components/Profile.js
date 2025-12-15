@@ -29,7 +29,7 @@ const Profile = () => {
       </div>
       
       <div className="profile-info">
-        <p>I'm a composer based in Paris, specializing in original scores for video games, films and television. I'm also a songwriter across different genres.</p>
+        <p>I’m a composer based in Paris, crafting narrative and thematic music driven by emotion, atmosphere and storytelling.</p>
         <div className="social-icons">
           <button 
             className="email-button" 

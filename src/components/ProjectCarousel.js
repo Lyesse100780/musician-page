@@ -4,19 +4,19 @@ import "./ProjectCarousel.css";
 const projects = [
   {
     img: "/images/project13.jpg",
-    title: "Dreams of the Old Ones",
+    title: "",
     type: "Narrative Video Game – OST",
     link: "https://masteroflore.com/dreams-of-the-old-ones"
   },
   {
     img: "/images/project12.jpg",
-    title: "Loom: Woven Worlds",
+    title: "",
     type: "Narrative Video Game – OST",
     link: "https://masteroflore.com/loom-wovenworlds"
   },
   {
     img: "/images/project14.jpg",
-    title: "Felted Memories",
+    title: "",
     type: "Album – Piano & Textures",
     link: "https://www.lyessemusic.com/felted-memories"
   },
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     img: "/images/project2.webp",
-    title: "Dante Inferno",
+    title: "",
     type: "Board Game – Trailers",
     link: "https://www.youtube.com/watch?v=x87weHkIx6A"
   },
@@ -40,7 +40,7 @@ const projects = [
   },
   {
     img: "/images/project4.png",
-    title: "HEL: The Last Saga",
+    title: "",
     type: "Narrative OST",
     link: "https://www.kickstarter.com/projects/1162110258/hel-the-last-saga?lang=fr"
   },

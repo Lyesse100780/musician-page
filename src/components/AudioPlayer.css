@@ -79,3 +79,40 @@
     border-color: #00F7FF;
   }
   
+  .track-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.track-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.track-title {
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-bracket {
+  opacity: 0.7;
+}
+
+.track-excerpt-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  opacity: 0.75;
+  width: 220px; /* ajuste si tu veux */
+  font-size: 0.95em;
+}
+
+.track-excerpt-input::placeholder {
+  opacity: 0.6;
+}
