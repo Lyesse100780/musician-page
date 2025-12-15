@@ -44,13 +44,8 @@ const Profile = () => {
         <div className="email-popup centered-popup">
           <div className="email-info" onClick={() => handleCopy('contact@lyessemusic.com')}>
             <MdMusicNote className="icon" />
-            <span>Artistic Inquiries: contact@lyessemusic.com</span>
+            <span>All Inquiries: contact@lyessemusic.com</span>
             {copiedEmail === 'contact@lyessemusic.com' && <span className="copied">Copied!</span>}
-          </div>
-          <div className="email-info" onClick={() => handleCopy('martialkool.louis@bozdaya.com')}>
-            <MdBusiness className="icon" />
-            <span>Mgmt & Business: martialkool.louis@bozdaya.com</span>
-            {copiedEmail === 'martialkool.louis@bozdaya.com' && <span className="copied">Copied!</span>}
           </div>
         </div>
       )}
