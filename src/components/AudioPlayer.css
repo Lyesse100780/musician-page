@@ -1,118 +1,248 @@
 /* ✅ Conteneur principal */
 .audio-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  /* ✅ Waveform */
-  .waveform-container {
-    width: 100%;
-    margin: 10px 0;
-    background: transparent !important;
-  }
-  
-  /* ✅ Liste des titres */
-  .track-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-  }
-  
-  .track-list li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 10px;
-    border-bottom: 1px solid #00F7FF;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .track-list li:hover {
-    background: rgba(0, 247, 255, 0.1);
-  }
-  
-  .track-list .active {
-    color: #00F7FF;
-  }
-  
-  /* ✅ Bouton play/pause avant chaque titre */
-  .play-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #00F7FF;
-    margin-right: 10px;
-  }
-  
-  /* ✅ Filtres */
-  .filter-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 0.6rem;
-    margin-bottom: 8px;
-  }
-  
-  .filter-button {
-    background: rgba(255, 255, 255, 0.08); /* Léger fond transparent */
-    color: #b0bec5; /* Texte gris discret */
-    border: 1px solid rgba(0, 247, 255, 0.3); /* Bordure fine cyan */
-    padding: 5px 12px; /* Boutons plus petits */
-    font-size: 0.85rem; /* Texte plus discret */
-    border-radius: 4px; /* Coins légèrement arrondis */
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .filter-button:hover {
-    background: rgba(0, 247, 255, 0.1); /* Effet au survol très subtil */
-    color: white; /* Texte plus visible */
-  }
-  
-  .filter-button.active {
-    background: rgba(0, 247, 255, 0.2); /* Un peu plus marqué quand actif */
-    color: #00F7FF;
-    font-weight: 500;
-    border-color: #00F7FF;
-  }
-  
-  .track-row {
+  width: min(920px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 1.25rem;
+  text-align: center;
+  background: rgba(6, 9, 11, 0.54);
+  border: 1px solid rgba(184, 111, 67, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(4px);
+}
+
+.audio-panel-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.audio-panel-tab {
+  background: rgba(255, 255, 255, 0.06);
+  color: #c9c1b8;
+  border: 1px solid var(--site-line-soft);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.audio-panel-tab:hover,
+.audio-panel-tab.active {
+  background: rgba(184, 111, 67, 0.18);
+  border-color: var(--site-accent);
+  color: #f0c1a4;
+}
+
+.audio-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.audio-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.audio-slider.single-slide {
+  overflow: hidden;
+}
+
+.audio-slider.single-slide .range-slide {
+  display: none;
+}
+
+.audio-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  padding: 0 0.2rem 0.25rem;
+}
+
+.sync-intro,
+.range-intro {
+  max-width: 760px;
+  margin: 0 auto 1rem;
+  text-align: left;
+}
+
+.sync-intro p {
+  margin: 0 0 0.75rem;
+  color: #e8e1da;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.sync-intro em {
+  color: #fff;
+  font-style: italic;
+}
+
+.range-intro {
+  display: flex;
+  justify-content: center;
+}
+
+.range-intro h2 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+}
+
+.range-intro p {
+  margin: 0;
+  color: #bdb5ad;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+/* ✅ Waveform */
+.waveform-container {
+  width: 100%;
+  max-width: 760px;
+  margin: 0.9rem auto 0.8rem;
+  background: transparent !important;
+}
+
+/* ✅ Liste des titres */
+.track-list {
+  list-style: none;
+  padding: 0;
+  width: min(760px, 100%);
+  margin: 0.25rem auto 0;
+}
+
+.track-list li {
+  padding: 0.68rem 0.2rem;
+  border-bottom: 1px solid var(--site-line);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.track-list li:hover {
+  background: var(--site-accent-soft);
+}
+
+.track-list .active {
+  color: var(--site-accent);
+}
+
+/* ✅ Ligne track (icône + meta) */
+.track-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
+/* ✅ Bouton play/pause */
+.play-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--site-accent);
+  flex: 0 0 auto;
+}
+
+/* ✅ Meta (titre + excerpt) */
 .track-meta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   min-width: 0;
+  flex: 1 1 auto;
+  text-align: left;
 }
 
+/* ✅ Titre */
 .track-title {
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
+  font-size: 1.03rem;
 }
 
+/* ✅ Crochets */
 .track-bracket {
   opacity: 0.7;
+  flex: 0 0 auto;
 }
 
-.track-excerpt-input {
-  border: none;
-  outline: none;
-  background: transparent;
-  color: inherit;
-  opacity: 0.75;
-  width: 220px; /* ajuste si tu veux */
-  font-size: 0.95em;
+/* ✅ Excerpt (version statique) */
+.track-excerpt-text {
+  opacity: 0.7;
+  font-size: 0.9em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
-.track-excerpt-input::placeholder {
-  opacity: 0.6;
+.felted-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: #f0c1a4;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.felted-link:hover {
+  color: #fff;
+}
+
+/* ✅ Mobile layout fix */
+@media (max-width: 520px) {
+  .audio-container {
+    width: min(100% - 24px, 920px);
+    padding: 1rem;
+  }
+
+  .audio-panel-tabs {
+    gap: 0.4rem;
+  }
+
+  .audio-panel-tab {
+    padding: 0.42rem 0.62rem;
+    font-size: 0.68rem;
+  }
+
+  .sync-intro p {
+    font-size: 0.98rem;
+  }
+
+  .track-row {
+    align-items: flex-start;
+  }
+
+  .track-meta {
+    flex-direction: column; /* empile titre + excerpt */
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .track-title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+
+  .track-excerpt-text {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    font-size: 0.85em;
+    line-height: 1.2;
+  }
+
+  .track-bracket {
+    display: none; /* vire les [ ] sur mobile */
+  }
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Prata&display=swap');
 
 * {
   margin: 0;
@@ -14,55 +14,80 @@
   justify-content: flex-end;
   overflow: hidden;
   position: relative;
-  border-bottom: 2px solid rgba(12, 237, 245, 0.8);
+  border-bottom: 2px solid rgba(184, 111, 67, 0.72);
+  background: #06090b;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(6, 9, 11, 0.72) 0%,
+    rgba(6, 9, 11, 0.46) 32%,
+    rgba(6, 9, 11, 0.12) 66%,
+    rgba(6, 9, 11, 0.18) 100%
+  );
+  pointer-events: none;
 }
 
 /* IMAGE RESPONSIVE */
 .banner-image {
   width: 100%;
-  height: auto;
-  max-height: 280px;
+  height: clamp(210px, 24vw, 330px);
   object-fit: cover;
-  object-position: center;
+  object-position: center 54%;
   display: block;
 }
 
 /* CONTENEUR DU TEXTE */
 .banner-content {
   position: absolute;
-  right: 8%;
-  text-align: right;
+  left: clamp(1.5rem, 7vw, 7rem);
+  width: min(520px, 48vw);
+  text-align: left;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 /* TITRE "LYESSE MUSIC" */
 .main-title {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-shadow: 0 0 15px rgba(0, 247, 255, 0.9),
-               3px 3px 8px rgba(0, 0, 0, 0.8);
-  line-height: 1.1;
+  font-family: 'Prata', Georgia, serif;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.015em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.72);
+  line-height: 1;
   margin: 0;
-  display: flex;
-  flex-direction: column; /* "Lyesse" et "Music" sur deux lignes */
-  align-items: flex-end; /* Aligné à droite */
-  font-size: 4vw !important; /* FORCÉ pour être responsive */
-  white-space: nowrap;
+  font-size: clamp(2.8rem, 5.4vw, 5.8rem) !important;
 }
 
-/* Texte en deux parties */
-.title-part {
-  display: block;
-  background: none;
-  padding: 0;
+.hero-lede {
+  margin: 1rem 0 0;
+  color: rgba(255, 247, 236, 0.92);
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: clamp(1rem, 1.45vw, 1.28rem);
+  font-weight: 500;
+  line-height: 1.45;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.68);
+}
+
+.hero-detail {
+  margin: 0.62rem 0 0;
+  color: rgba(226, 160, 120, 0.9);
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: clamp(0.86rem, 1.1vw, 1rem);
+  line-height: 1.5;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.72);
 }
 
 /* RESPONSIVE : Ajustement de la taille du texte */
 @media (max-width: 1024px) {
   .banner-content {
-    right: 5%;
+    left: 5%;
+    width: min(480px, 52vw);
   }
 
   .main-title {
@@ -72,22 +97,42 @@
 
 @media (max-width: 768px) {
   .banner-content {
-    right: 5%; /* GARDE LE TEXTE À DROITE MÊME EN MOBILE */
-    text-align: right;
-    align-items: flex-end;
+    left: 1.25rem;
+    width: min(430px, 68vw);
+    text-align: left;
+    align-items: flex-start;
   }
 
   .main-title {
-    font-size: 2rem; /* Taille plus petite */
+    font-size: clamp(2rem, 8vw, 3.4rem) !important;
+  }
+
+  .banner-image {
+    height: 250px;
+    object-position: 62% center;
   }
 }
 
 @media (max-width: 480px) {
   .banner-content {
-    right: 3%; /* Ajustement fin pour petit écran */
+    left: 1rem;
+    width: min(320px, 76vw);
   }
 
   .main-title {
-    font-size: 1.2rem !important; /* FORCÉ pour garantir la réduction */
+    font-size: 2rem !important;
+  }
+
+  .hero-lede {
+    font-size: 0.9rem;
+  }
+
+  .hero-detail {
+    font-size: 0.78rem;
+  }
+
+  .banner-image {
+    height: 210px;
+    object-position: 64% center;
   }
 }

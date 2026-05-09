@@ -4,19 +4,19 @@ import "./ProjectCarousel.css";
 const projects = [
   {
     img: "/images/project13.jpg",
-    title: "",
+    title: "Dreams of the Old Ones",
     type: "Narrative Video Game – OST",
     link: "https://masteroflore.com/dreams-of-the-old-ones"
   },
   {
     img: "/images/project12.jpg",
-    title: "",
+    title: "Loom: Woven Worlds",
     type: "Narrative Video Game – OST",
     link: "https://masteroflore.com/loom-wovenworlds"
   },
   {
     img: "/images/project14.jpg",
-    title: "",
+    title: "Felted Memories",
     type: "Album – Piano & Textures",
     link: "https://www.lyessemusic.com/felted-memories"
   },
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     img: "/images/project2.webp",
-    title: "",
+    title: "AracKhan Wars",
     type: "Board Game – Trailers",
     link: "https://www.youtube.com/watch?v=x87weHkIx6A"
   },
@@ -40,7 +40,7 @@ const projects = [
   },
   {
     img: "/images/project4.png",
-    title: "",
+    title: "Hel: The Last Saga",
     type: "Narrative OST",
     link: "https://www.kickstarter.com/projects/1162110258/hel-the-last-saga?lang=fr"
   },
@@ -110,6 +110,8 @@ export default function ProjectCarousel() {
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
         ></iframe>
       </div>
 
@@ -128,6 +130,7 @@ export default function ProjectCarousel() {
               (featuredIndex === i ? " featured" : "")
             }
             onClick={() => handleClick(p.link)}
+            aria-label={`Open ${p.title} - ${p.type}`}
           >
             <img src={p.img} alt={p.title} loading="lazy" />
             <div className="hover-title">

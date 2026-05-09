@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdOutlineEmail, MdMusicNote, MdBusiness } from 'react-icons/md';
+import { MdOutlineEmail, MdMusicNote } from 'react-icons/md';
 import './Profile.css';
 
 const Profile = () => {
@@ -29,11 +29,12 @@ const Profile = () => {
       </div>
       
       <div className="profile-info">
-        <p>I’m a composer based in Paris, crafting narrative and thematic music driven by emotion, atmosphere and storytelling.</p>
+        <p>Paris-based composer working across sync, games and visual storytelling.</p>
         <div className="social-icons">
           <button 
             className="email-button" 
             onClick={() => setShowPopup(!showPopup)}
+            aria-label="Show contact email"
           >
             <MdOutlineEmail className="icon" />
           </button>
@@ -42,7 +43,18 @@ const Profile = () => {
 
       {showPopup && (
         <div className="email-popup centered-popup">
-          <div className="email-info" onClick={() => handleCopy('contact@lyessemusic.com')}>
+          <div
+            className="email-info"
+            onClick={() => handleCopy('contact@lyessemusic.com')}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleCopy('contact@lyessemusic.com');
+              }
+            }}
+          >
             <MdMusicNote className="icon" />
             <span>All Inquiries: contact@lyessemusic.com</span>
             {copiedEmail === 'contact@lyessemusic.com' && <span className="copied">Copied!</span>}
