@@ -5,27 +5,55 @@ const mailerLiteAccountId = "1914173";
 
 export default function NarrativeSuitePage() {
   useEffect(() => {
-    if (window.ml) {
-      window.ml("account", mailerLiteAccountId);
-      return;
-    }
-
-    window.ml =
-      window.ml ||
-      function () {
+    if (!window.ml) {
+      window.ml = function () {
         (window.ml.q = window.ml.q || []).push(arguments);
       };
 
-    const scriptId = "mailerlite-universal";
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement("script");
-      script.id = scriptId;
-      script.async = true;
-      script.src = "https://assets.mailerlite.com/js/universal.js";
-      document.head.appendChild(script);
+      const scriptId = "mailerlite-universal";
+      if (!document.getElementById(scriptId)) {
+        const script = document.createElement("script");
+        script.id = scriptId;
+        script.async = true;
+        script.src = "https://assets.mailerlite.com/js/universal.js";
+        document.head.appendChild(script);
+      }
     }
 
     window.ml("account", mailerLiteAccountId);
+
+    const replaceMailerLiteCopy = () => {
+      const formBox = document.querySelector(".narrative-mailerlite-box");
+      if (!formBox) {
+        return;
+      }
+
+      const walker = document.createTreeWalker(formBox, NodeFilter.SHOW_TEXT);
+      let node = walker.nextNode();
+      while (node) {
+        if (
+          node.nodeValue.includes(
+            "Join the list and receive the free Old Worlds Starter Pack"
+          )
+        ) {
+          node.nodeValue = "Enter your email and get instant access.";
+        }
+        node = walker.nextNode();
+      }
+    };
+
+    replaceMailerLiteCopy();
+    const observer = new MutationObserver(replaceMailerLiteCopy);
+    const formBox = document.querySelector(".narrative-mailerlite-box");
+    if (formBox) {
+      observer.observe(formBox, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -52,9 +80,9 @@ export default function NarrativeSuitePage() {
             audio packs for games.
           </p>
           <p>
-            Each release combines full mix loops, separated layers and
+            Each release combines full mix loops, separated stems and
             implementation-ready material, designed to help developers build
-            living atmospheres without starting from zero.
+            living atmospheres without starting from scratch.
           </p>
           <div className="narrative-mailerlite-box">
             <p className="download-main">
@@ -62,7 +90,7 @@ export default function NarrativeSuitePage() {
             </p>
             <p className="download-sub">
               Three layered adaptive soundscapes for exploration, tension and
-              ancient places. Includes full mix loops, separated layers and
+              ancient places. Includes full mix loops, separated stems and
               clean loop points for fast implementation in game audio
               workflows.
             </p>
