@@ -21,6 +21,12 @@ const projects = [
     link: "https://www.lyessemusic.com/felted-memories"
   },
   {
+    img: "/images/the-narrative-suite.png",
+    title: "The Narrative Suite",
+    type: "Audio Pack",
+    link: "/the-narrative-suite"
+  },
+  {
     img: "/images/project1.jpg",
     title: "AracKhan Wars",
     type: "Board Game – OST & Trailers",
@@ -96,12 +102,17 @@ export default function ProjectCarousel() {
   }, []);
 
   const handleClick = (url) => {
+    if (url.startsWith("/")) {
+      window.location.href = url;
+      return;
+    }
+
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
     <div className="projects-section">
-      <div className="video-container">
+      <div className="video-container" id="demo-reel">
         <iframe
           width="100%"
           height="400"
