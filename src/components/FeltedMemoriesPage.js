@@ -1,5 +1,6 @@
 // src/components/FeltedMemoriesPage.js
 import React from "react";
+import FeltedAudioPlayer, { fullFeltedTracks } from "./FeltedAudioPlayer";
 import "./FeltedMemories.css";
 
 export default function FeltedMemoriesPage() {
@@ -8,22 +9,10 @@ export default function FeltedMemoriesPage() {
       {/* HERO BANNER */}
       <section
         className="hero"
-        style={{ backgroundImage: 'url("/images/felted-banner.jpg")' }}
+        style={{ backgroundImage: 'url("/images/hero-felted-memories.png")' }}
       >
         <div className="hero-overlay">
-          <div className="hero-content">
-            <p className="hero-kicker">Intimate Piano · Cinematic Textures</p>
-
-            <h1 className="hero-title">Felted Memories</h1>
-
-            <p className="hero-subtitle">
-              Intimate piano & evolving textures in motion.
-            </p>
-
-            <p className="hero-credit">
-              Written &amp; arranged by Lyesse Hamadou
-            </p>
-          </div>
+          <h1 className="hero-title sr-only">Felted Memories</h1>
         </div>
       </section>
 
@@ -48,22 +37,18 @@ export default function FeltedMemoriesPage() {
         </div>
       </section>
 
-      {/* LISTEN / SOUNDCLOUD SECTION */}
+      {/* LISTEN SECTION */}
       <section className="felted-section listen-section">
-  <div className="felted-inner">
-    <div className="soundcloud-wrapper">
-      <iframe
-        title="Felted Memories – Playlist"
-        width="100%"
-        height="450"
-        scrolling="no"
-        frameBorder="0"
-        allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2148295055%3Fsecret_token%3Ds-nX5RXekKGrl&color=%23291710&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"
-      />
-    </div>
-  </div>
-</section>
+        <div className="felted-inner">
+          <FeltedAudioPlayer
+            tracks={fullFeltedTracks}
+            showIntro={false}
+            ctaHref=""
+            ctaLabel=""
+            className="felted-page-player"
+          />
+        </div>
+      </section>
 
       {/* FINAL INFO SECTION */}
       <section className="felted-section">
@@ -83,11 +68,14 @@ export default function FeltedMemoriesPage() {
           </p>
         </div>
         <div className="more-work">
-  <a href="https://www.lyessemusic.com" target="_blank" rel="noopener noreferrer">
-    More about my work →
-  </a>
-</div>
-
+          <a
+            href="https://www.lyessemusic.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            More about my work →
+          </a>
+        </div>
       </section>
     </main>
   );

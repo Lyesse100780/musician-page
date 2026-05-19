@@ -15,10 +15,10 @@ const projects = [
     link: "https://masteroflore.com/loom-wovenworlds"
   },
   {
-    img: "/images/project14.jpg",
+    img: "/images/felted-memories-square.png",
     title: "Felted Memories",
     type: "Album – Piano & Textures",
-    link: "https://www.lyessemusic.com/felted-memories"
+    link: "/felted-memories"
   },
   {
     img: "/images/the-narrative-suite.png",
