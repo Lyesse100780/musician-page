@@ -11,7 +11,7 @@
 .hero {
   position: relative;
   width: 100%;
-  height: clamp(260px, 32vw, 430px);
+  height: clamp(280px, 36vw, 500px);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -109,7 +109,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    height: clamp(190px, 40vw, 280px);
+    height: clamp(210px, 44vw, 320px);
     background-position: center center;
   }
 

@@ -24,24 +24,29 @@ const isAbortError = (error) =>
 
 export default function FeltedAudioPlayer({
   tracks = homeFeltedTracks,
+  playlists = null,
   showIntro = true,
   ctaHref = "/felted-memories",
   ctaLabel = "More about Felted Memories",
   className = "",
 }) {
-  const [currentTrack, setCurrentTrack] = useState(tracks[0]);
+  const [activePlaylistIndex, setActivePlaylistIndex] = useState(0);
+  const activePlaylist = playlists?.[activePlaylistIndex] || null;
+  const activeTracks = activePlaylist?.tracks || tracks;
+  const hasTracks = activeTracks.length > 0;
+  const [currentTrack, setCurrentTrack] = useState(activeTracks[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
 
   useEffect(() => {
-    setCurrentTrack(tracks[0]);
+    setCurrentTrack(activeTracks[0] || null);
     setIsPlaying(false);
-  }, [tracks]);
+  }, [activeTracks]);
 
   useEffect(() => {
-    if (!waveformRef.current || !tracks[0]) return;
+    if (!waveformRef.current || !activeTracks[0]) return;
 
     const wave = WaveSurfer.create({
       container: waveformRef.current,
@@ -58,7 +63,7 @@ export default function FeltedAudioPlayer({
     wave.on("pause", () => setIsPlaying(false));
     wave.on("finish", () => setIsPlaying(false));
 
-    wave.load(tracks[0].file).catch((error) => {
+    wave.load(activeTracks[0].file).catch((error) => {
       if (!isAbortError(error)) {
         console.error("Erreur waveform :", error);
       }
@@ -70,7 +75,7 @@ export default function FeltedAudioPlayer({
       }
       wave.destroy();
     };
-  }, [tracks]);
+  }, [activeTracks]);
 
   useEffect(() => {
     const unlockAudio = () => {
@@ -141,6 +146,42 @@ export default function FeltedAudioPlayer({
   return (
     <div className={`audio-container felted-audio-player ${className}`.trim()}>
       <section className="audio-slide sync-slide" aria-label="Felted Memories player">
+        {!!playlists?.length && (
+          <div className="playlist-tabs" aria-label="The Living Forms playlists">
+            {playlists.map((playlist, index) => (
+              <button
+                key={playlist.title}
+                type="button"
+                className={
+                  "playlist-tab" +
+                  (activePlaylistIndex === index ? " active" : "")
+                }
+                onClick={() => {
+                  setActivePlaylistIndex(index);
+                }}
+              >
+                {playlist.title}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {activePlaylist && (
+          <div className="album-panel">
+            <img
+              className="album-cover"
+              src={activePlaylist.artwork}
+              alt={`${activePlaylist.title} artwork`}
+            />
+            <div className="album-copy">
+              <h2>{activePlaylist.title}</h2>
+              {activePlaylist.description.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        )}
+
         {showIntro && (
           <div className="sync-header">
             <img
@@ -161,44 +202,50 @@ export default function FeltedAudioPlayer({
           </div>
         )}
 
-        <div className="waveform-container" ref={waveformRef}></div>
+        {hasTracks ? (
+          <>
+            <div className="waveform-container" ref={waveformRef}></div>
 
-        <ul className="track-list">
-          {tracks.map((track) => (
-            <li
-              key={track.title}
-              className={currentTrack?.title === track.title ? "active" : ""}
-            >
-              <div className="track-row">
-                <button
-                  className="play-button"
-                  onClick={() => togglePlay(track)}
-                  aria-label={`${currentTrack?.title === track.title && isPlaying ? "Pause" : "Play"} ${track.title}`}
+            <ul className="track-list">
+              {activeTracks.map((track) => (
+                <li
+                  key={track.title}
+                  className={currentTrack?.title === track.title ? "active" : ""}
                 >
-                  {currentTrack?.title === track.title && isPlaying ? (
-                    <BsFillPauseFill size={16} />
-                  ) : (
-                    <BsFillPlayFill size={16} />
-                  )}
-                </button>
+                  <div className="track-row">
+                    <button
+                      className="play-button"
+                      onClick={() => togglePlay(track)}
+                      aria-label={`${currentTrack?.title === track.title && isPlaying ? "Pause" : "Play"} ${track.title}`}
+                    >
+                      {currentTrack?.title === track.title && isPlaying ? (
+                        <BsFillPauseFill size={16} />
+                      ) : (
+                        <BsFillPlayFill size={16} />
+                      )}
+                    </button>
 
-                <div className="track-meta">
-                  <span className="track-title" onClick={() => togglePlay(track)}>
-                    {track.title}
-                  </span>
+                    <div className="track-meta">
+                      <span className="track-title" onClick={() => togglePlay(track)}>
+                        {track.title}
+                      </span>
 
-                  {!!track.excerpt?.trim() && (
-                    <>
-                      <span className="track-bracket">[</span>
-                      <span className="track-excerpt-text">{track.excerpt}</span>
-                      <span className="track-bracket">]</span>
-                    </>
-                  )}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+                      {!!track.excerpt?.trim() && (
+                        <>
+                          <span className="track-bracket">[</span>
+                          <span className="track-excerpt-text">{track.excerpt}</span>
+                          <span className="track-bracket">]</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p className="playlist-empty">Tracks coming soon.</p>
+        )}
 
         {ctaHref && ctaLabel && (
           <a className="felted-link" href={ctaHref}>

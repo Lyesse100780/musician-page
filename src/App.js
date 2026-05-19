@@ -61,6 +61,7 @@ function App() {
         <Route path="/" element={<Home />} />
 
         {/* 🔥 NOUVELLE LANDING PAGE */}
+        <Route path="/the-living-forms" element={<FeltedMemoriesPage />} />
         <Route path="/felted-memories" element={<FeltedMemoriesPage />} />
         <Route path="/the-narrative-suite" element={<NarrativeSuitePage />} />
 

@@ -18,7 +18,19 @@ const projects = [
     img: "/images/felted-memories-square.png",
     title: "Felted Memories",
     type: "Album – Piano & Textures",
-    link: "/felted-memories"
+    link: "/the-living-forms"
+  },
+  {
+    img: "/images/shifting-cells-square.png",
+    title: "Shifting Cells",
+    type: "Album – Minimal Forms",
+    link: "/the-living-forms"
+  },
+  {
+    img: "/images/noire-square.png",
+    title: "Noire",
+    type: "Album – Dark Atmospheres",
+    link: "/the-living-forms"
   },
   {
     img: "/images/the-narrative-suite.png",
