@@ -31,7 +31,40 @@ const livingFormsPlaylists = [
     ],
     tracks: [],
   },
+  {
+    title: "Rising Forms",
+    artwork: "/images/rising-forms-square.png",
+    description: [
+      "Rising Forms is a collection of expanding forms and evolving motion.",
+      "Built around luminous harmonic movement, delicate piano gestures and airy organic textures, the album explores emotional lift, transformation and quiet momentum through a bright, cinematic palette.",
+    ],
+    tracks: [],
+  },
+  {
+    title: "Cold World",
+    artwork: "/images/cold-world-square.png",
+    description: [
+      "Cold World is a collection of static soundscapes and cinematic tension.",
+      "Blending restrained piano, suspended harmonies, frozen textures and subtle organic movement, the album creates spacious cues for stillness, distance, mystery and emotional isolation.",
+    ],
+    tracks: [],
+  },
+  {
+    title: "Unfolded Horizons",
+    artwork: "/images/unfolded-horizons-square.png",
+    description: [
+      "Unfolded Horizons is a collection of floating harmonies and suspended motion.",
+      "Designed around slow emotional expansion, soft piano colors and wide atmospheric textures, the album moves between openness, wonder and restrained cinematic uplift.",
+    ],
+    tracks: [],
+  },
 ];
+
+const collectionPreview = livingFormsPlaylists.map(({ title, artwork, description }) => ({
+  title,
+  artwork,
+  subtitle: description[0].replace(`${title} is a collection of `, ""),
+}));
 
 export default function FeltedMemoriesPage() {
   return (
@@ -47,7 +80,7 @@ export default function FeltedMemoriesPage() {
       </section>
 
       {/* TEXT SECTION */}
-      <section className="felted-section">
+      <section className="felted-section living-forms-intro-section">
         <div className="felted-inner">
           <p className="felted-paragraph">
             <em>The Living Forms</em> is a collection of organic cinematic
@@ -55,6 +88,19 @@ export default function FeltedMemoriesPage() {
             shaped around a distinct emotional landscape, with cues designed to
             feel personal, tactile and ready to place against picture.
           </p>
+
+          <div className="collection-strip" aria-label="The Living Forms albums">
+            {collectionPreview.map((album) => (
+              <a
+                className="collection-card"
+                href="#living-forms-player"
+                aria-label={`Listen to ${album.title}`}
+                key={album.title}
+              >
+                <img src={album.artwork} alt="" loading="lazy" />
+              </a>
+            ))}
+          </div>
 
           <p className="felted-paragraph">
             The first album, <em>Felted Memories</em>, stays close to the
@@ -67,7 +113,7 @@ export default function FeltedMemoriesPage() {
       </section>
 
       {/* LISTEN SECTION */}
-      <section className="felted-section listen-section">
+      <section className="felted-section listen-section" id="living-forms-player">
         <div className="felted-inner">
           <FeltedAudioPlayer
             playlists={livingFormsPlaylists}

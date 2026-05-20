@@ -39,6 +39,12 @@ const projects = [
     link: "/the-narrative-suite"
   },
   {
+    img: "/images/rising-forms-square.png",
+    title: "Rising Forms",
+    type: "Album – Evolving Motion",
+    link: "/the-living-forms"
+  },
+  {
     img: "/images/project1.jpg",
     title: "AracKhan Wars",
     type: "Board Game – OST & Trailers",
@@ -63,6 +69,12 @@ const projects = [
     link: "https://www.kickstarter.com/projects/1162110258/hel-the-last-saga?lang=fr"
   },
   {
+    img: "/images/cold-world-square.png",
+    title: "Cold World",
+    type: "Album – Cinematic Tension",
+    link: "/the-living-forms"
+  },
+  {
     img: "/images/project5.jpeg",
     title: "AracKhan Wars",
     type: "Trailer – Card Game",
@@ -79,6 +91,12 @@ const projects = [
     title: "Anastyr",
     type: "Board Game – Trailer",
     link: "https://www.youtube.com/watch?v=iwJ1WoIlHCs"
+  },
+  {
+    img: "/images/unfolded-horizons-square.png",
+    title: "Unfolded Horizons",
+    type: "Album – Suspended Motion",
+    link: "/the-living-forms"
   },
   {
     img: "/images/project8.jpg",
