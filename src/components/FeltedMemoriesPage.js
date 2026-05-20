@@ -8,7 +8,7 @@ const livingFormsPlaylists = [
     title: "Felted Memories",
     artwork: "/images/felted-memories-square.png",
     description: [
-      "Felted Memories is a collection of intimate pieces.",
+      "Felted Memories is a suite of intimate pieces.",
       "Blending soft piano performances with subtle bass lines, modular atmospheres, drifting pads and living sound design, the album explores memory, silence and emotional space through a warm and restrained sonic palette.",
     ],
     tracks: fullFeltedTracks,
@@ -17,7 +17,7 @@ const livingFormsPlaylists = [
     title: "Shifting Cells",
     artwork: "/images/shifting-cells-square.png",
     description: [
-      "Shifting Cells is a collection of evolving minimal forms.",
+      "Shifting Cells is a suite of evolving minimal forms.",
       "Built around repeating motifs, harmonic cells and organic movement, the album blends intimate piano performances with modular textures, subtle rhythmic patterns and shifting atmospheric layers. Through repetition, transformation and suspended harmonic motion, each piece slowly unfolds like a living structure in constant evolution.",
     ],
     tracks: [],
@@ -26,7 +26,7 @@ const livingFormsPlaylists = [
     title: "Noire",
     artwork: "/images/noire-square.png",
     description: [
-      "Noire is a collection of dark harmonies and atmospheres.",
+      "Noire is a suite of dark harmonies and atmospheres.",
       "Blending minimal piano performances with deep textures, suspended tension, organic movement and cinematic space, the album explores darkness with restraint and elegance. Warm low-end, evolving atmospheres and subtle friction create immersive pieces moving between intimacy, melancholy and quiet psychological tension.",
     ],
     tracks: [],
@@ -35,7 +35,7 @@ const livingFormsPlaylists = [
     title: "Rising Forms",
     artwork: "/images/rising-forms-square.png",
     description: [
-      "Rising Forms is a collection of expanding forms and evolving motion.",
+      "Rising Forms is a suite of expanding forms and evolving motion.",
       "Built around luminous harmonic movement, delicate piano gestures and airy organic textures, the album explores emotional lift, transformation and quiet momentum through a bright, cinematic palette.",
     ],
     tracks: [],
@@ -44,7 +44,7 @@ const livingFormsPlaylists = [
     title: "Cold World",
     artwork: "/images/cold-world-square.png",
     description: [
-      "Cold World is a collection of static soundscapes and cinematic tension.",
+      "Cold World is a suite of static soundscapes and cinematic tension.",
       "Blending restrained piano, suspended harmonies, frozen textures and subtle organic movement, the album creates spacious cues for stillness, distance, mystery and emotional isolation.",
     ],
     tracks: [],
@@ -53,7 +53,7 @@ const livingFormsPlaylists = [
     title: "Unfolded Horizons",
     artwork: "/images/unfolded-horizons-square.png",
     description: [
-      "Unfolded Horizons is a collection of floating harmonies and suspended motion.",
+      "Unfolded Horizons is a suite of floating harmonies and suspended motion.",
       "Designed around slow emotional expansion, soft piano colors and wide atmospheric textures, the album moves between openness, wonder and restrained cinematic uplift.",
     ],
     tracks: [],
@@ -63,7 +63,7 @@ const livingFormsPlaylists = [
 const collectionPreview = livingFormsPlaylists.map(({ title, artwork, description }) => ({
   title,
   artwork,
-  subtitle: description[0].replace(`${title} is a collection of `, ""),
+  subtitle: description[0].replace(`${title} is a suite of `, ""),
 }));
 
 export default function FeltedMemoriesPage() {
