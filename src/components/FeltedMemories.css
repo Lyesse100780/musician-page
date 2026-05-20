@@ -28,6 +28,23 @@
   align-items: center;
 }
 
+.hero-signature {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.1rem, 3vw, 2rem);
+  transform: translateX(-50%);
+  margin: 0;
+  color: rgba(237, 217, 186, 0.82);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.58rem, 0.9vw, 0.78rem);
+  letter-spacing: 0.46em;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.62);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -161,6 +178,12 @@
   .hero {
     height: clamp(210px, 44vw, 320px);
     background-position: center center;
+  }
+
+  .hero-signature {
+    bottom: 0.85rem;
+    font-size: 0.52rem;
+    letter-spacing: 0.28em;
   }
 
   .hero-content {

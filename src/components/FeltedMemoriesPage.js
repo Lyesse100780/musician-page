@@ -82,6 +82,7 @@ export default function FeltedMemoriesPage() {
       >
         <div className="hero-overlay">
           <h1 className="hero-title sr-only">The Living Forms</h1>
+          <p className="hero-signature">Composed &amp; Arranged by Lyesse Hamadou</p>
         </div>
       </section>
 

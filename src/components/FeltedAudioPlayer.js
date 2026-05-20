@@ -174,9 +174,17 @@ export default function FeltedAudioPlayer({
               alt={`${activePlaylist.title} artwork`}
             />
             <div className="album-copy">
-              <h2>{activePlaylist.title}</h2>
-              {activePlaylist.description.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+              <div className="album-heading">
+                <h2>{activePlaylist.title}</h2>
+                <p className="album-intro">{activePlaylist.description[0]}</p>
+              </div>
+              {activePlaylist.description.slice(1).map((paragraph) => (
+                <p
+                  className="album-description"
+                  key={paragraph}
+                >
+                  {paragraph}
+                </p>
               ))}
             </div>
           </div>
