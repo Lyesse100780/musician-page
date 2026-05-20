@@ -29,7 +29,13 @@ const livingFormsPlaylists = [
       "Noire is a suite of dark harmonies and atmospheres.",
       "Blending minimal piano performances with deep textures, suspended tension, organic movement and cinematic space, the album explores darkness with restraint and elegance. Warm low-end, evolving atmospheres and subtle friction create immersive pieces moving between intimacy, melancholy and quiet psychological tension.",
     ],
-    tracks: [],
+    tracks: [
+      {
+        title: "Nocturne for a Fading Shore",
+        file: "/audio/noire-nocturne-for-a-fading-shore.mp3",
+        excerpt: "Noire",
+      },
+    ],
   },
   {
     title: "Rising Forms",
