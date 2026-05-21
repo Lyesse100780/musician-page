@@ -11,6 +11,52 @@
   backdrop-filter: blur(4px);
 }
 
+.home-player-carousel {
+  width: 100%;
+}
+
+.home-player-slider {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.home-player-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.home-player-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+
+.home-player-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+}
+
+.home-player-dot {
+  width: 0.48rem;
+  height: 0.48rem;
+  padding: 0;
+  border: 1px solid rgba(240, 176, 125, 0.62);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease, border-color 160ms ease;
+}
+
+.home-player-dot.active {
+  background: #c77742;
+  border-color: #e2a078;
+  transform: scale(1.2);
+}
+
 .audio-panel-tabs {
   display: flex;
   justify-content: center;

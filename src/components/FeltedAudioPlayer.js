@@ -26,6 +26,14 @@ export default function FeltedAudioPlayer({
   tracks = homeFeltedTracks,
   playlists = null,
   showIntro = true,
+  introArtwork = "/images/felted-memories-square.png",
+  introTitle = (
+    <>
+      After years composing for artists, games and trailers, I created
+      <em> Felted Memories</em> — my first sync-focused album.
+    </>
+  ),
+  introSubtitle = "Intimate piano, modular textures and organic imperfections, written for memory, loss, tenderness and quiet transformation.",
   ctaHref = "/felted-memories",
   ctaLabel = "More about Felted Memories",
   className = "",
@@ -194,18 +202,12 @@ export default function FeltedAudioPlayer({
           <div className="sync-header">
             <img
               className="sync-cover"
-              src="/images/felted-memories-square.png"
-              alt="Felted Memories artwork"
+              src={currentTrack?.artwork || introArtwork}
+              alt=""
             />
             <div className="sync-intro">
-              <p>
-                After years composing for artists, games and trailers, I created
-                <em> Felted Memories</em> — my first sync-focused album.
-              </p>
-              <p>
-                Intimate piano, modular textures and organic imperfections, written for
-                memory, loss, tenderness and quiet transformation.
-              </p>
+              <p>{introTitle}</p>
+              <p>{introSubtitle}</p>
             </div>
           </div>
         )}
